@@ -23,7 +23,7 @@ class ContactSupportRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'question' => 'required|string|max:1000',
+            'question' => 'required|string|max:255',
         ];
     }
 
