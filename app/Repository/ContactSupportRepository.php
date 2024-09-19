@@ -17,10 +17,9 @@ class ContactSupportRepository implements ContactSupportInterface
 
     public function store(array $data)
     {
+        // Send the email with the data from the contact support form
+        Mail::to($data['email'])->send(new SimpleMail($data['email'], $data['question']));
 
-        Mail::to('devmuhammedsalama@gmail.com')->send(new SimpleMail());
         return 'Email has been sent successfully!';
-
-//        return $contactSupport;
     }
 }

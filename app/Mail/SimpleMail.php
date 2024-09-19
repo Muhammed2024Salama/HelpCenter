@@ -13,12 +13,16 @@ class SimpleMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $email;
+    public $question;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($email, $question)
     {
-        // Any data to be passed to the email can be handled here
+        $this->email = $email;
+        $this->question = $question;
     }
 
     /**
@@ -27,7 +31,7 @@ class SimpleMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Email Notification'
+            subject: 'Contact Support Inquiry'
         );
     }
 
@@ -37,7 +41,11 @@ class SimpleMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.simple' // This view should handle the HTML content of the email
+            view: 'emails.simple', // Blade view for the email content
+            with: [
+                'email' => $this->email,
+                'question' => $this->question,
+            ]
         );
     }
 
