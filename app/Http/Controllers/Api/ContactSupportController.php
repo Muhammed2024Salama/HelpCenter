@@ -26,9 +26,7 @@ class ContactSupportController extends Controller
 
     public function store(ContactSupportRequest $request)
     {
-
         $contactSupport = $this->contactSupportRepository->store($request->validated());
         return ResponseHelper::success('success', 'Contact request sent successfully', $contactSupport, 201);
-
     }
 }
